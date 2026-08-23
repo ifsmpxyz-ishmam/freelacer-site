@@ -4,6 +4,8 @@ exports.handler = async (event,context) => {
     const tableName = "Freelancer Site";
     const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 try {
+    console.log('Received body:', event.body);
+    
     const response = await fetch(url, {
         method: 'POST',
         headers: {
