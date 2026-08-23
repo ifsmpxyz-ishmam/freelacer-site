@@ -3,6 +3,7 @@ const formstatus = document.getElementById('form-status');
 
 contactform.addEventListener('submit', async function (event) {
   event.preventDefault();
+  console.log('Form submitted, preventDefault called');
 
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -26,6 +27,7 @@ contactform.addEventListener('submit', async function (event) {
   };
 
   try {
+    console.log('About to fetch, data:', messageData);
     const response = await fetch('/.netlify/functions/addMessage', {
       method: 'POST',
       headers: {
