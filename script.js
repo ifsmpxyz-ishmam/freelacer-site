@@ -1,3 +1,4 @@
+
 const contactform = document.getElementById('contact-form');
 const formstatus = document.getElementById('form-status');
 
@@ -48,6 +49,8 @@ if (contactform) {
     }
   });
 }
+
+  
 const reviewContainer = document.getElementById('reviews-container');
 
 if (reviewContainer) {
@@ -61,15 +64,35 @@ if (reviewContainer) {
     }
       );
       const data = await response.json();
-      console.log (data)
+      function displayReviews(reviews) {
+    reviewContainer.innerHTML = '';
+    reviews.forEach((review,index) => {
+      const div = document.createElement ('div');
+      div.classList.add('Reviews-div')
+      const Name = document.createElement('p')
+      Name.classList.add('Name-Review')
+      Name.textContent = review.fields [ 'Name' ]
+        const ratingValue = review.fields['Rating'];
+        const stars = '⭐'.repeat(ratingValue);
+        const rating = document.createElement('p')
+        rating.textContent = stars;
+        rating.classList.add('Reviews-Rating')
+        const comment = document.createElement('p')
+        comment.textContent = review.fields [ 'Comment' ]
+        comment.classList.add('Reviews-Describtion')
+        div.append(Name,rating,comment)
+        reviewContainer.appendChild(div)
+    });
+    
+  }
+  displayReviews(data);
     }
     catch (error) {
     console.error('Error fecthing review:', error);
-        reviewContainer.innerHTML = 'Error fetching reviews';
+        reviewContainer.innerHTML = 'Error loading reviews';
     }
   }
   fetchReviews();
-  }
-
+}
 
   
