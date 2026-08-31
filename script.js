@@ -72,6 +72,7 @@ if (reviewContainer) {
       const Name = document.createElement('p')
       Name.classList.add('Name-Review')
       Name.textContent = review.fields [ 'Name' ]
+      Name.setAttribute('data-initial', review.fields['Name'].charAt(0).toUpperCase());
         const ratingValue = review.fields['Rating'];
         const stars = '⭐'.repeat(ratingValue);
         const rating = document.createElement('p')
