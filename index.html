@@ -88,5 +88,27 @@
         <p>Let's talk about what your business needs.</p>
         <a href="contact.html" class="cta-btn">Get in Touch</a>
     </section>
+    <div id="review-form-wrapper" style="display: none;">
+        <h2>Share Your Experience</h2>
+        <form id="review-form">
+            <div>
+                <label>Rating (1-5)</label>
+                <input type="number" id="rating" min="1" max="5" required>
+            </div>
+            <div>
+                <label>Comment</label>
+                <textarea id="comment" required></textarea>
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
+        <p id="review-status"></p>
+    </div>
+
+    <div class="view-reviews-link">
+        <a href="reviews.html" class="cta-secondary">See All Reviews</a>
+    </div>
+</section>
+
+<script type="module" src="submit-review.js"></script>
 </body>
 </html>
