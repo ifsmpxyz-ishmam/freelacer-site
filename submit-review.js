@@ -28,14 +28,5 @@ const reviewStatus = document.getElementById('review-status');
 // ধাপ ৪: Login State চেক করা (page load হওয়ার সাথে সাথে)
 if (loginRequired && reviewFormWrapper) {
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User logged in আছে
-      loginRequired.style.display = 'none';
-      reviewFormWrapper.style.display = 'block';
-    } else {
-      // User logged in নেই
-      loginRequired.style.display = 'block';
-      reviewFormWrapper.style.display = 'none';
-    }
-  });
+    currentUser = user;
 }
