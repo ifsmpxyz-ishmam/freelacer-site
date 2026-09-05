@@ -40,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
       };
     } else {
       navAuth.textContent = 'Login / Sign Up';
-      navAuth.href = 'https://forgedigital-login.netlify.app/';
+      navAuth.href = 'https://forgedigital-login1.netlify.app/';
       navAuth.onclick = null;
     }
   }
