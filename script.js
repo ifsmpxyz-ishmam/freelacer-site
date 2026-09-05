@@ -95,5 +95,53 @@ if (reviewContainer) {
   }
   fetchReviews();
 }
+const reviewForm = document.getElementById('review-form');
+const reviewStatus = document.getElementById('review-status');
 
+if (reviewForm) {
+  reviewForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const reviewerName = document.getElementById('reviewer-name').value.trim();
+    const rating = document.getElementById('rating').value.trim();
+    const comment = document.getElementById('comment').value.trim();
+
+    if (!reviewerName || !rating || !comment) {
+      reviewStatus.textContent = 'Please fill in all fields.';
+      return;
+    }
+
+    reviewStatus.textContent = 'Submitting...';
+
+    const reviewData = {
+      fields: {
+        'Name': reviewerName,
+        'Rating': Number(rating),
+        'Comment': comment,
+        'Status': 'Pending'
+      }
+    };
+
+    try {
+      const response = await fetch('/.netlify/functions/addReview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewData)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      reviewStatus.textContent = "Thanks! Your review is pending approval.";
+      reviewForm.reset();
+
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      reviewStatus.textContent = 'Something went wrong. Please try again.';
+    }
+  });
+}
   
